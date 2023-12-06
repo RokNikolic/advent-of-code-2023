@@ -1,15 +1,15 @@
 import time
 
 with open('input.txt', 'r') as f:
-    puzzle_input = f.readlines()
+    puzzle_input = f.read()
+    puzzle_lines = puzzle_input.split("\n")
 
 
 def day1part1(lines):
     count = 0
     for line in lines:
-        exploded = [*line]
         num_list = []
-        for character in exploded:
+        for character in line:
             if character.isnumeric():
                 num_list.append(character)
 
@@ -32,9 +32,8 @@ def day1part2(lines):
     count = 0
     for line in lines:
         line = string_num_to_int(line)
-        exploded = [*line]
         num_list = []
-        for character in exploded:
+        for character in line:
             if character.isnumeric():
                 num_list.append(character)
 
@@ -47,12 +46,12 @@ def day1part2(lines):
 
 
 start = time.perf_counter()
-result = day1part1(puzzle_input)
+result = day1part1(puzzle_lines)
 end = time.perf_counter()
 print(f"Day 1 Part 1 result is: {result}, computed in: {end - start} seconds")
 
 start = time.perf_counter()
-result = day1part2(puzzle_input)
+result = day1part2(puzzle_lines)
 end = time.perf_counter()
 print(f"Day 1 Part 2 result is: {result}, computed in: {end - start} seconds")
 

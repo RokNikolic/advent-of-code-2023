@@ -19,7 +19,7 @@ def pad_matrix(array, symbol):
 
 
 def check_around(i, j, lines):
-    positions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+    positions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 0), (0, 1), (1, -1), (1, 0), (1, 1)]
     found = []
     time_since_last = 100
     last_line = 0

@@ -62,7 +62,20 @@ def day3part1(lines):
 
 
 def day3part2(lines):
-    return 0
+    total_sum = 0
+    for i in range(len(lines)):
+        for j in range(len(lines)):
+            if lines[i][j] == '*':
+                list_of_found = check_around(i, j, lines)
+                if len(list_of_found) == 2:
+                    gear_ratio = 1
+                    for found in list_of_found:
+                        number = expand_number(found, lines)
+                        gear_ratio *= number
+
+                    total_sum += gear_ratio
+
+    return total_sum
 
 
 start = time.perf_counter()

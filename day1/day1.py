@@ -54,5 +54,3 @@ start = time.perf_counter()
 result = day1part2(puzzle_lines)
 end = time.perf_counter()
 print(f"Day 1 Part 2 result is: {result}, computed in: {end - start} seconds")
-
-# :)

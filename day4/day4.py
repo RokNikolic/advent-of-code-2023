@@ -13,10 +13,7 @@ def day4part1(lines):
         winning_set = set(winning_nums.split())
         our_set = set(our_nums.split())
         matches = len(winning_set.intersection(our_set))
-        if matches != 0:
-            points = pow(2, matches - 1)
-        else:
-            points = 0
+        points = int(pow(2, matches - 1))
         point_sum += points
 
     return point_sum

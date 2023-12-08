@@ -26,20 +26,17 @@ def day4part2(lines):
     card_list = []
     for line in lines:
         _, numbers = line.split(":")
-
         winning_nums, our_nums = numbers.split("|")
         winning_set = set(winning_nums.split())
         our_set = set(our_nums.split())
         matches = len(winning_set.intersection(our_set))
-        card_list.append((int(matches), 1))
+        card_list.append([int(matches), 1])
 
     score = 0
-    for i, (matches, amount_of_cards) in enumerate(card_list):
-        for j in range(i + 1, i + 1 + matches):
-            (other_matches, other_amount) = card_list[j]
-            card_list[j] = (other_matches, other_amount + (1 * amount_of_cards))
-
+    for card_id, (matches, amount_of_cards) in enumerate(card_list):
         score += amount_of_cards
+        for new_card_id in range(card_id + 1, card_id + 1 + matches):
+            card_list[new_card_id][1] += (1 * amount_of_cards)
 
     return score
 

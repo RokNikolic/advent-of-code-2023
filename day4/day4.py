@@ -9,10 +9,10 @@ def day4part1(lines):
     point_sum = 0
     for line in lines:
         _, numbers = line.split(":")
-        our_nums, winning_nums = numbers.split("|")
-        our_set = set(filter(None, our_nums.split(" ")))
-        winning_set = set(filter(None, winning_nums.split(" ")))
-        matches = len(our_set.intersection(winning_set))
+        winning_nums, our_nums = numbers.split("|")
+        winning_set = set(winning_nums.split())
+        our_set = set(our_nums.split())
+        matches = len(winning_set.intersection(our_set))
         if matches != 0:
             points = pow(2, matches - 1)
         else:
@@ -23,7 +23,25 @@ def day4part1(lines):
 
 
 def day4part2(lines):
-    return 0
+    card_list = []
+    for line in lines:
+        _, numbers = line.split(":")
+
+        winning_nums, our_nums = numbers.split("|")
+        winning_set = set(winning_nums.split())
+        our_set = set(our_nums.split())
+        matches = len(winning_set.intersection(our_set))
+        card_list.append((int(matches), 1))
+
+    score = 0
+    for i, (matches, amount_of_cards) in enumerate(card_list):
+        for j in range(i + 1, i + 1 + matches):
+            (other_matches, other_amount) = card_list[j]
+            card_list[j] = (other_matches, other_amount + (1 * amount_of_cards))
+
+        score += amount_of_cards
+
+    return score
 
 
 start = time.perf_counter()

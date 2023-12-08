@@ -36,7 +36,7 @@ def day4part2(lines):
     for card_id, (matches, amount_of_cards) in enumerate(card_list):
         score += amount_of_cards
         for new_card_id in range(card_id + 1, card_id + 1 + matches):
-            card_list[new_card_id][1] += (1 * amount_of_cards)
+            card_list[new_card_id][1] += amount_of_cards
 
     return score
 

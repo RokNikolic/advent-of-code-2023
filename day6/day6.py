@@ -9,7 +9,7 @@ def get_distance(speed, remaining_time):
     return speed * remaining_time
 
 
-def day4part1(lines):
+def day6part1(lines):
     times = map(int, lines[0].split()[1:])
     distances = map(int, lines[1].split()[1:])
     total_sum = 1
@@ -25,7 +25,7 @@ def day4part1(lines):
     return total_sum
 
 
-def day4part2(lines):
+def day6part2(lines):
     time_of_race = int(lines[0].split(":")[1].replace(" ", ""))
     distance_of_race = int(lines[1].split(":")[1].replace(" ", ""))
     winning_times = 0
@@ -37,11 +37,11 @@ def day4part2(lines):
 
 
 start = time.perf_counter()
-result = day4part1(puzzle_lines)
+result = day6part1(puzzle_lines)
 end = time.perf_counter()
 print(f"Day 6 Part 1 result is: {result}, computed in: {end - start} seconds")
 
 start = time.perf_counter()
-result = day4part2(puzzle_lines)
+result = day6part2(puzzle_lines)
 end = time.perf_counter()
 print(f"Day 6 Part 2 result is: {result}, computed in: {end - start} seconds")

@@ -33,8 +33,8 @@ def day2part2(lines):
             cubes = reveal.split(",")
             for cube in cubes:
                 num, color = cube.split(" ")[1:]
-                if int(num) > min_dict[color]:
-                    min_dict[color] = int(num)
+                if (int_num := int(num)) > min_dict[color]:
+                    min_dict[color] = int_num
 
         power += min_dict["red"] * min_dict["green"] * min_dict["blue"]
 

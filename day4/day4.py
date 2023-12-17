@@ -1,9 +1,5 @@
 import time
 
-with open('input.txt', 'r') as f:
-    puzzle_input = f.read()
-    puzzle_lines = puzzle_input.split("\n")
-
 
 def day4part1(lines):
     point_sum = 0
@@ -38,12 +34,17 @@ def day4part2(lines):
     return score
 
 
-start = time.perf_counter()
-result = day4part1(puzzle_lines)
-end = time.perf_counter()
-print(f"Day 4 Part 1 result is: {result}, computed in: {end - start} seconds")
+if __name__ == '__main__':
+    with open('input.txt', 'r') as f:
+        puzzle_input = f.read()
+        puzzle_lines = puzzle_input.split("\n")
 
-start = time.perf_counter()
-result = day4part2(puzzle_lines)
-end = time.perf_counter()
-print(f"Day 4 Part 2 result is: {result}, computed in: {end - start} seconds")
+    start = time.perf_counter()
+    result = day4part1(puzzle_lines)
+    end = time.perf_counter()
+    print(f"Day 4 Part 1 result is: {result}, computed in: {end - start :.3} seconds")
+
+    start = time.perf_counter()
+    result = day4part2(puzzle_lines)
+    end = time.perf_counter()
+    print(f"Day 4 Part 2 result is: {result}, computed in: {end - start :.3} seconds")

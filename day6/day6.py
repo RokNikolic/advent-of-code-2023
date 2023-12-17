@@ -1,9 +1,5 @@
 import time
 
-with open('input.txt', 'r') as f:
-    puzzle_input = f.read()
-    puzzle_lines = puzzle_input.split("\n")
-
 
 def get_distance(speed, remaining_time):
     return speed * remaining_time
@@ -36,12 +32,17 @@ def day6part2(lines):
     return winning_times
 
 
-start = time.perf_counter()
-result = day6part1(puzzle_lines)
-end = time.perf_counter()
-print(f"Day 6 Part 1 result is: {result}, computed in: {end - start} seconds")
+if __name__ == "__main__":
+    with open('input.txt', 'r') as f:
+        puzzle_input = f.read()
+        puzzle_lines = puzzle_input.split("\n")
 
-start = time.perf_counter()
-result = day6part2(puzzle_lines)
-end = time.perf_counter()
-print(f"Day 6 Part 2 result is: {result}, computed in: {end - start} seconds")
+    start = time.perf_counter()
+    result = day6part1(puzzle_lines)
+    end = time.perf_counter()
+    print(f"Day 6 Part 1 result is: {result}, computed in: {end - start :.3} seconds")
+
+    start = time.perf_counter()
+    result = day6part2(puzzle_lines)
+    end = time.perf_counter()
+    print(f"Day 6 Part 2 result is: {result}, computed in: {end - start :.3} seconds")

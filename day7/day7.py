@@ -1,9 +1,5 @@
 import time
 
-with open('input.txt', 'r') as f:
-    puzzle_input = f.read()
-    puzzle_lines = puzzle_input.split("\n")
-
 
 def get_card_value(card, part):
     if card.isnumeric():
@@ -96,12 +92,17 @@ def day7(lines, part):
     return total_sum
 
 
-start = time.perf_counter()
-result = day7(puzzle_lines, 1)
-end = time.perf_counter()
-print(f"Day 7 Part 1 result is: {result}, computed in: {end - start} seconds")
+if __name__ == '__main__':
+    with open('input.txt', 'r') as f:
+        puzzle_input = f.read()
+        puzzle_lines = puzzle_input.split("\n")
 
-start = time.perf_counter()
-result = day7(puzzle_lines, 2)
-end = time.perf_counter()
-print(f"Day 7 Part 2 result is: {result}, computed in: {end - start} seconds")
+    start = time.perf_counter()
+    result = day7(puzzle_lines, 1)
+    end = time.perf_counter()
+    print(f"Day 7 Part 1 result is: {result}, computed in: {end - start :.3} seconds")
+
+    start = time.perf_counter()
+    result = day7(puzzle_lines, 2)
+    end = time.perf_counter()
+    print(f"Day 7 Part 2 result is: {result}, computed in: {end - start :.3} seconds")

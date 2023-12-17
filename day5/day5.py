@@ -1,9 +1,5 @@
 import time
 
-with open('input.txt', 'r') as f:
-    puzzle_input = f.read()
-    puzzle_lines = puzzle_input.split("\n\n")
-
 
 def create_range(mapping):
     dest, start_of_range, length = map(int, mapping.split())
@@ -36,15 +32,20 @@ def day5part1(lines):
 
 
 def day5part2(lines):
-    return 0
+    return None
 
 
-start = time.perf_counter()
-result = day5part1(puzzle_lines)
-end = time.perf_counter()
-print(f"Day 4 Part 1 result is: {result}, computed in: {end - start} seconds")
+if __name__ == '__main__':
+    with open('input.txt', 'r') as f:
+        puzzle_input = f.read()
+        puzzle_lines = puzzle_input.split("\n\n")
 
-start = time.perf_counter()
-result = day5part2(puzzle_lines)
-end = time.perf_counter()
-print(f"Day 4 Part 2 result is: {result}, computed in: {end - start} seconds")
+    start = time.perf_counter()
+    result = day5part1(puzzle_lines)
+    end = time.perf_counter()
+    print(f"Day 4 Part 1 result is: {result}, computed in: {end - start :.3} seconds")
+
+    start = time.perf_counter()
+    result = day5part2(puzzle_lines)
+    end = time.perf_counter()
+    print(f"Day 4 Part 2 result is: {result}, computed in: {end - start :.3} seconds")

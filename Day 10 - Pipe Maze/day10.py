@@ -12,7 +12,7 @@ def is_pipe(symbol):
     return symbol in pipe_dict
 
 
-def check_pipe_dict(index, lines):
+def find_pipe_directions(index, lines):
     pipe_dict = {'|': [(-1, 0), (1, 0)],
                  '-': [(0, -1), (0, 1)],
                  'L': [(-1, 0), (0, 1)],
@@ -29,35 +29,30 @@ def check_pipe_dict(index, lines):
     return relative_directions
 
 
-def replace_s(lines):
-    positions = [(-1, 0), (0, -1), (0, 1), (1, 0)]
+def find_start(lines):
     start_index = None
     for i in range(len(lines)):
         for j in range(len(lines)):
             if lines[i][j] == 'S':
-                start_index = j, i
+                start_index = i, j
 
-    found = []
+    positions = [(-1, 0), (0, -1), (0, 1), (1, 0)]
     for y, x in positions:
-        next_y = start_index[0] + y
-        next_x = start_index[1] + x
-        symbol = lines[next_y][next_x]
+        next_index = (start_index[0] + y, start_index[1] + x)
+        symbol = lines[next_index[0]][next_index[1]]
         if is_pipe(symbol):
-            possible_directions = check_pipe_dict((next_index := (next_y, next_x)), lines)
+            possible_directions = find_pipe_directions((next_index[0], next_index[1]), lines)
             if start_index in possible_directions:
-                found.append(next_index)
-
-    print(found)
+                return start_index, next_index
 
 
-def follow_pipe(start_index, lines):
-    start_directions = check_pipe_dict(start_index, lines)
-    work_index = start_directions[0]
+def follow_pipe(start_index, next_index, lines):
+    work_index = next_index
     old_index = start_index
     steps = 1
     while start_index != work_index:
         steps += 1
-        directions = check_pipe_dict(work_index, lines)
+        directions = find_pipe_directions(work_index, lines)
         next_index = [direction for direction in directions if direction != old_index][0]
         old_index = work_index
         work_index = next_index
@@ -66,11 +61,9 @@ def follow_pipe(start_index, lines):
 
 
 def day10part1(lines):
-    start_index = (2, 0)
-    start_index, new_lines = replace_s(lines)
-
-    steps = follow_pipe(start_index, new_lines)
-    return steps / 2
+    start_index, next_index = find_start(lines)
+    steps = follow_pipe(start_index, next_index, lines)
+    return int(steps / 2)
 
 
 def day10part2(lines):

@@ -32,7 +32,7 @@ def find_pipe_directions(index, lines):
 def find_start(lines):
     start_index = None
     for i in range(len(lines)):
-        for j in range(len(lines)):
+        for j in range(len(lines[0])):
             if lines[i][j] == 'S':
                 start_index = i, j
 
@@ -46,28 +46,42 @@ def find_start(lines):
                 return start_index, next_index
 
 
-def follow_pipe(start_index, next_index, lines):
-    work_index = next_index
+def follow_pipe(start_index, work_index, lines):
+    pipe = [start_index]
     old_index = start_index
     steps = 1
     while start_index != work_index:
         steps += 1
+        pipe.append(work_index)
         directions = find_pipe_directions(work_index, lines)
         next_index = [direction for direction in directions if direction != old_index][0]
         old_index = work_index
         work_index = next_index
 
-    return steps
+    return steps, pipe
 
 
 def day10part1(lines):
     start_index, next_index = find_start(lines)
-    steps = follow_pipe(start_index, next_index, lines)
+    steps, _ = follow_pipe(start_index, next_index, lines)
     return int(steps / 2)
 
 
 def day10part2(lines):
-    return 0
+    start_index, next_index = find_start(lines)
+    _, pipe = follow_pipe(start_index, next_index, lines)
+
+    inside_tiles = 0
+    inside_flag = False
+    for i, line in enumerate(lines):
+        for j, char in enumerate(line):
+            if (i, j) in pipe:
+                if char in '|LJ':
+                    inside_flag = not inside_flag
+            else:
+                inside_tiles += inside_flag
+
+    return inside_tiles
 
 
 if __name__ == "__main__":

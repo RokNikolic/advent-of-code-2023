@@ -1,48 +1,44 @@
 import time
 
 
-def expand_universe(matrix):
-    empty_rows = []
-    for i, line in enumerate(matrix):
-        if all(value == '.' for value in line):
-            empty_rows.append((i, line))
-    for i, (row, line) in enumerate(empty_rows):
-        matrix.insert(row + i, line)
+def get_distance(point1, point2, empty_rows, empty_columns, expansion):
+    y_expansion = 0
+    for rows in empty_rows:
+        if rows in range(point1[0], point2[0]) or rows in range(point2[0], point1[0]):
+            y_expansion += 1
 
-    trans_matrix = [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+    x_expansion = 0
+    for column in empty_columns:
+        if column in range(point1[1], point2[1]) or column in range(point2[1], point1[1]):
+            x_expansion += 1
 
-    empty_columns = []
-    for j, line in enumerate(trans_matrix):
-        if all(value == '.' for value in line):
-            empty_columns.append((j, line))
-    for j, (columns, line) in enumerate(empty_columns):
-        trans_matrix.insert(columns + j, line)
+    y_dist = abs(point1[0] - point2[0]) + y_expansion * (expansion - 1)
+    x_dist = abs(point1[1] - point2[1]) + x_expansion * (expansion - 1)
 
-    return [[trans_matrix[j][i] for j in range(len(trans_matrix))] for i in range(len(trans_matrix[0]))]
+    return y_dist + x_dist
 
 
-def part1(lines):
-    expanded_lines = expand_universe(lines)
-
+def part1_part2(lines, expansion):
     index = 0
     galaxy_dict = {}
-    for i, line in enumerate(expanded_lines):
-        for j, char in enumerate(line):
+    empty_rows = set(range(len(lines)))
+    empty_columns = set(range(len(lines[0])))
+
+    for y, line in enumerate(lines):
+        for x, char in enumerate(line):
             if char == "#":
                 index += 1
-                galaxy_dict[index] = (i, j)
+                galaxy_dict[index] = (y, x)
+                empty_rows.discard(y)
+                empty_columns.discard(x)
 
     total_sum = 0
-    for current_name, (y1, x1) in galaxy_dict.items():
-        for other_name, (y_other, x_other) in galaxy_dict.items():
-            manhattan_distance = abs(y1 - y_other) + abs(x1 - x_other)
+    for point1 in galaxy_dict.values():
+        for point2 in galaxy_dict.values():
+            manhattan_distance = get_distance(point1, point2, empty_rows, empty_columns, expansion)
             total_sum += manhattan_distance
 
     return int(total_sum / 2)
-
-
-def part2(lines):
-    return 0
 
 
 if __name__ == "__main__":
@@ -51,11 +47,11 @@ if __name__ == "__main__":
         puzzle_lines = puzzle_input.split("\n")
 
     start = time.perf_counter()
-    result = part1(puzzle_lines)
+    result = part1_part2(puzzle_lines, 2)
     end = time.perf_counter()
     print(f"Day 11 Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = part2(puzzle_lines)
+    result = part1_part2(puzzle_lines, 1_000_000)
     end = time.perf_counter()
     print(f"Day 11 Part 2 result is: {result}, computed in: {end - start :.3} seconds")

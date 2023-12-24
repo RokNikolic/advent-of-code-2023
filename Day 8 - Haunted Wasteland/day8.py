@@ -3,7 +3,7 @@ import itertools
 from math import lcm
 
 
-def day8part1(lines):
+def part1(lines):
     lr_instructions = lines[0]
     ins_dict = {'L': 0, 'R': 1}
 
@@ -26,7 +26,7 @@ def day8part1(lines):
     return steps
 
 
-def day8part2(lines):
+def part2(lines):
     lr_instructions = lines[0]
     ins_dict = {'L': 0, 'R': 1}
 
@@ -60,11 +60,11 @@ if __name__ == "__main__":
         puzzle_lines = puzzle_input.split("\n")
 
     start = time.perf_counter()
-    result = day8part1(puzzle_lines)
+    result = part1(puzzle_lines)
     end = time.perf_counter()
     print(f"Day 8 Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = day8part2(puzzle_lines)
+    result = part2(puzzle_lines)
     end = time.perf_counter()
     print(f"Day 8 Part 2 result is: {result}, computed in: {end - start :.3} seconds")

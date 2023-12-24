@@ -18,7 +18,7 @@ def apply_maps(seed, map_list):
     return seed
 
 
-def day5part1(lines):
+def part1(lines):
     seed_map = lines.pop(0)
     seed_list = list(map(int, seed_map.split()[1:]))
 
@@ -31,7 +31,7 @@ def day5part1(lines):
     return min(location_list)
 
 
-def day5part2(lines):
+def part2(lines):
     return None
 
 
@@ -41,11 +41,11 @@ if __name__ == '__main__':
         puzzle_lines = puzzle_input.split("\n\n")
 
     start = time.perf_counter()
-    result = day5part1(puzzle_lines)
+    result = part1(puzzle_lines)
     end = time.perf_counter()
     print(f"Day 4 Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = day5part2(puzzle_lines)
+    result = part2(puzzle_lines)
     end = time.perf_counter()
     print(f"Day 4 Part 2 result is: {result}, computed in: {end - start :.3} seconds")

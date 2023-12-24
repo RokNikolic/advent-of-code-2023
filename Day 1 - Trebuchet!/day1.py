@@ -1,7 +1,7 @@
 import time
 
 
-def day1part1(lines):
+def part1(lines):
     count = 0
     for line in lines:
         num_list = []
@@ -24,7 +24,7 @@ def string_num_to_int(line):
     return line
 
 
-def day1part2(lines):
+def part2(lines):
     count = 0
     for line in lines:
         line = string_num_to_int(line)
@@ -47,11 +47,11 @@ if __name__ == "__main__":
         puzzle_lines = puzzle_input.split("\n")
 
     start = time.perf_counter()
-    result = day1part1(puzzle_lines)
+    result = part1(puzzle_lines)
     end = time.perf_counter()
     print(f"Day 1 Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = day1part2(puzzle_lines)
+    result = part2(puzzle_lines)
     end = time.perf_counter()
     print(f"Day 1 Part 2 result is: {result}, computed in: {end - start :.3} seconds")

@@ -1,7 +1,7 @@
 import time
 
 
-def day2part1(lines, dict_of_limits):
+def part1(lines, dict_of_limits):
     count = 0
     for line in lines:
         game, content = line.split(":")
@@ -22,7 +22,7 @@ def day2part1(lines, dict_of_limits):
     return count
 
 
-def day2part2(lines):
+def part2(lines):
     power = 0
     for line in lines:
         game, content = line.split(":")
@@ -47,11 +47,11 @@ if __name__ == "__main__":
         puzzle_lines = puzzle_input.split("\n")
 
     start = time.perf_counter()
-    result = day2part1(puzzle_lines, {"red": 12, "green": 13, "blue": 14})
+    result = part1(puzzle_lines, {"red": 12, "green": 13, "blue": 14})
     end = time.perf_counter()
     print(f"Day 2 Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = day2part2(puzzle_lines)
+    result = part2(puzzle_lines)
     end = time.perf_counter()
     print(f"Day 2 Part 2 result is: {result}, computed in: {end - start :.3} seconds")

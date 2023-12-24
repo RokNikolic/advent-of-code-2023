@@ -61,13 +61,13 @@ def follow_pipe(start_index, work_index, lines):
     return steps, pipe
 
 
-def day10part1(lines):
+def part1(lines):
     start_index, next_index = find_start(lines)
     steps, _ = follow_pipe(start_index, next_index, lines)
     return int(steps / 2)
 
 
-def day10part2(lines):
+def part2(lines):
     start_index, next_index = find_start(lines)
     _, pipe = follow_pipe(start_index, next_index, lines)
 
@@ -90,11 +90,11 @@ if __name__ == "__main__":
         puzzle_lines = puzzle_input.split("\n")
 
     start = time.perf_counter()
-    result = day10part1(puzzle_lines)
+    result = part1(puzzle_lines)
     end = time.perf_counter()
     print(f"Day 10 Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = day10part2(puzzle_lines)
+    result = part2(puzzle_lines)
     end = time.perf_counter()
     print(f"Day 10 Part 2 result is: {result}, computed in: {end - start :.3} seconds")

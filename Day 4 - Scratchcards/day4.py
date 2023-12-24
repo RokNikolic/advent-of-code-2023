@@ -1,7 +1,7 @@
 import time
 
 
-def day4part1(lines):
+def part1(lines):
     point_sum = 0
     for line in lines:
         _, numbers = line.split(":")
@@ -15,7 +15,7 @@ def day4part1(lines):
     return point_sum
 
 
-def day4part2(lines):
+def part2(lines):
     card_list = []
     for line in lines:
         _, numbers = line.split(":")
@@ -40,11 +40,11 @@ if __name__ == '__main__':
         puzzle_lines = puzzle_input.split("\n")
 
     start = time.perf_counter()
-    result = day4part1(puzzle_lines)
+    result = part1(puzzle_lines)
     end = time.perf_counter()
     print(f"Day 4 Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = day4part2(puzzle_lines)
+    result = part2(puzzle_lines)
     end = time.perf_counter()
     print(f"Day 4 Part 2 result is: {result}, computed in: {end - start :.3} seconds")

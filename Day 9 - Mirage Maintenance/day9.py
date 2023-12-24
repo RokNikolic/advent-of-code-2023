@@ -27,7 +27,7 @@ def predict_previous_value(input_list):
         return new_difference
 
 
-def day9part1(lines):
+def part1(lines):
     total_sum = 0
     for line in lines:
         list_of_line = [int(value) for value in line.split()]
@@ -38,7 +38,7 @@ def day9part1(lines):
     return total_sum
 
 
-def day9part2(lines):
+def part2(lines):
     total_sum = 0
     for line in lines:
         list_of_line = [int(value) for value in line.split()]
@@ -55,11 +55,11 @@ if __name__ == "__main__":
         puzzle_lines = puzzle_input.split("\n")
 
     start = time.perf_counter()
-    result = day9part1(puzzle_lines)
+    result = part1(puzzle_lines)
     end = time.perf_counter()
     print(f"Day 9 Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = day9part2(puzzle_lines)
+    result = part2(puzzle_lines)
     end = time.perf_counter()
     print(f"Day 9 Part 2 result is: {result}, computed in: {end - start :.3} seconds")

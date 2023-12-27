@@ -3,9 +3,8 @@ import time
 
 def part1(lines, dict_of_limits):
     count = 0
-    for line in lines:
-        game, content = line.split(":")
-        game_id = int(game.split(" ")[1])
+    for game_id, line in enumerate(lines):
+        _, content = line.split(":")
         reveals = content.split(";")
 
         legal_game = True
@@ -17,7 +16,7 @@ def part1(lines, dict_of_limits):
                     legal_game = False
 
         if legal_game:
-            count += game_id
+            count += (game_id + 1)
 
     return count
 
@@ -25,7 +24,7 @@ def part1(lines, dict_of_limits):
 def part2(lines):
     power = 0
     for line in lines:
-        game, content = line.split(":")
+        _, content = line.split(":")
         reveals = content.split(";")
 
         min_dict = {"red": 0, "green": 0, "blue": 0}
@@ -33,8 +32,7 @@ def part2(lines):
             cubes = reveal.split(",")
             for cube in cubes:
                 num, color = cube.split(" ")[1:]
-                if (int_num := int(num)) > min_dict[color]:
-                    min_dict[color] = int_num
+                min_dict[color] = max(min_dict[color], int(num))
 
         power += min_dict["red"] * min_dict["green"] * min_dict["blue"]
 

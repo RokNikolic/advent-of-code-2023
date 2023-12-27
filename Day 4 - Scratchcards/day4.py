@@ -8,6 +8,7 @@ def part1(lines):
         winning_nums, our_nums = numbers.split("|")
         winning_set = set(winning_nums.split())
         our_set = set(our_nums.split())
+
         matches = len(winning_set.intersection(our_set))
         points = int(pow(2, matches - 1))
         point_sum += points
@@ -19,9 +20,10 @@ def part2(lines):
     card_list = []
     for line in lines:
         _, numbers = line.split(":")
-        winning_nums, our_nums = numbers.split("|")
+        winning_nums, our_nums = numbers.split(" | ")
         winning_set = set(winning_nums.split())
         our_set = set(our_nums.split())
+
         matches = len(winning_set.intersection(our_set))
         card_list.append([int(matches), 1])
 

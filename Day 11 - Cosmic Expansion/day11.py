@@ -20,7 +20,7 @@ def get_distance(point1, point2, empty_rows, empty_columns, expansion):
 
 def part1_part2(lines, expansion):
     index = 0
-    galaxy_dict = {}
+    galaxy_points = []
     empty_rows = set(range(len(lines)))
     empty_columns = set(range(len(lines[0])))
 
@@ -28,17 +28,17 @@ def part1_part2(lines, expansion):
         for x, char in enumerate(line):
             if char == "#":
                 index += 1
-                galaxy_dict[index] = (y, x)
+                galaxy_points.append((y, x))
                 empty_rows.discard(y)
                 empty_columns.discard(x)
 
     total_sum = 0
-    for point1 in galaxy_dict.values():
-        for point2 in galaxy_dict.values():
+    for i, point1 in enumerate(galaxy_points):
+        for point2 in galaxy_points[:i]:
             manhattan_distance = get_distance(point1, point2, empty_rows, empty_columns, expansion)
             total_sum += manhattan_distance
 
-    return int(total_sum / 2)
+    return total_sum
 
 
 if __name__ == "__main__":
@@ -49,9 +49,9 @@ if __name__ == "__main__":
     start = time.perf_counter()
     result = part1_part2(puzzle_lines, 2)
     end = time.perf_counter()
-    print(f"Day 11 Part 1 result is: {result}, computed in: {end - start :.3} seconds")
+    print(f"Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
     result = part1_part2(puzzle_lines, 1_000_000)
     end = time.perf_counter()
-    print(f"Day 11 Part 2 result is: {result}, computed in: {end - start :.3} seconds")
+    print(f"Part 2 result is: {result}, computed in: {end - start :.3} seconds")

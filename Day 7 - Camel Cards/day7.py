@@ -100,9 +100,9 @@ if __name__ == '__main__':
     start = time.perf_counter()
     result = part1_par2(puzzle_lines, 1)
     end = time.perf_counter()
-    print(f"Day 7 Part 1 result is: {result}, computed in: {end - start :.3} seconds")
+    print(f"Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
     result = part1_par2(puzzle_lines, 2)
     end = time.perf_counter()
-    print(f"Day 7 Part 2 result is: {result}, computed in: {end - start :.3} seconds")
+    print(f"Part 2 result is: {result}, computed in: {end - start :.3} seconds")

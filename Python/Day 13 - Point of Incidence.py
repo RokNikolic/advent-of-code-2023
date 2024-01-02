@@ -10,7 +10,7 @@ def part2(lines):
 
 
 if __name__ == "__main__":
-    with open('input.txt', 'r') as f:
+    with open(r'../Input/day13.txt', 'r') as f:
         puzzle_input = f.read()
         puzzle_lines = puzzle_input.split("\n")
 

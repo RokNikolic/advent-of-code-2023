@@ -21,7 +21,7 @@ def part1_part2(lines, part):
 
 
 if __name__ == "__main__":
-    with open(r'../input/day1.txt', 'r') as f:
+    with open(r'../Input/day1.txt', 'r') as f:
         puzzle_input = f.read()
         puzzle_lines = puzzle_input.split("\n")
 

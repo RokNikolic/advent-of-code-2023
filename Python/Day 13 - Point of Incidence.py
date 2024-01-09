@@ -7,11 +7,10 @@ def find_mirror(array):
         if line == last_found:
             real_reflection_flag = True
             for j in range(min(i, len(array) - i)):
-                real_reflection_flag = array[i - (j + 1)] == array[i + j]
-                print(array[i - (j + 1)], array[i + j])
+                if array[i - (j + 1)] != array[i + j]:
+                    real_reflection_flag = False
 
             if real_reflection_flag:
-                print(i)
                 return i
         else:
             last_found = line
@@ -24,7 +23,7 @@ def part1(chunks):
     column_sum = 0
     for chunk in chunks:
         array = chunk.split()
-        transposed_array = [col for col in zip(*array)]
+        transposed_array = list(zip(*array))
 
         if vertical_reflection := find_mirror(array):
             row_sum += vertical_reflection

@@ -1,41 +1,44 @@
 import time
 
 
-def find_mirror(array):
-    last_found = []
-    for i, line in enumerate(array):
-        if line == last_found:
-            real_reflection_flag = True
-            for j in range(min(i, len(array) - i)):
-                if array[i - (j + 1)] != array[i + j]:
-                    real_reflection_flag = False
+def num_of_differences(string1, string2):
+    differences = 0
+    for character1, character2 in zip(string1, string2):
+        if character1 != character2:
+            differences += 1
+    return differences
 
-            if real_reflection_flag:
-                return i
-        else:
-            last_found = line
+
+def find_mirror(array, differences):
+    for i in range(1, len(array)):
+        before = array[:i][::-1]
+        after = array[i:]
+        zipped = zip(before, after)
+
+        sum_of_differences = 0
+        for first, second in zipped:
+            sum_of_differences += num_of_differences(first, second)
+
+        if sum_of_differences == differences:
+            return i
     else:
         return None
 
 
-def part1(chunks):
+def part1_part2(chunks, differences):
     row_sum = 0
     column_sum = 0
     for chunk in chunks:
         array = chunk.split()
         transposed_array = list(zip(*array))
 
-        if vertical_reflection := find_mirror(array):
+        if vertical_reflection := find_mirror(array, differences):
             row_sum += vertical_reflection
 
-        elif horizontal_reflection := find_mirror(transposed_array):
+        elif horizontal_reflection := find_mirror(transposed_array, differences):
             column_sum += horizontal_reflection
 
     return column_sum + (row_sum * 100)
-
-
-def part2(lines):
-    return 0
 
 
 if __name__ == "__main__":
@@ -44,11 +47,11 @@ if __name__ == "__main__":
         puzzle_chunks = puzzle_input.split("\n\n")
 
     start = time.perf_counter()
-    result = part1(puzzle_chunks)
+    result = part1_part2(puzzle_chunks, 0)
     end = time.perf_counter()
     print(f"Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = part2(puzzle_chunks)
+    result = part1_part2(puzzle_chunks, 1)
     end = time.perf_counter()
     print(f"Part 2 result is: {result}, computed in: {end - start :.3} seconds")

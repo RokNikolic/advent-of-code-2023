@@ -2,13 +2,20 @@ import time
 
 
 def move_stones(array):
-    return array
+    transposed_array = list(zip(*array))
+    final_array = []
+    for line in transposed_array:
+        rolling_portions = "".join(line).split("#")
+        sorted_portions = ["".join(sorted(portion, reverse=True)) for portion in rolling_portions]
+        final_array.append("#".join(sorted_portions))
+
+    return list(zip(*final_array))
 
 
 def part1(lines):
-    flipped_array = move_stones(lines)[::-1]
+    moved_stones_array = move_stones(lines)
     total_weight = 0
-    for i, line in enumerate(flipped_array):
+    for i, line in enumerate(moved_stones_array[::-1]):
         for position in line:
             if position == "O":
                 total_weight += (i + 1)

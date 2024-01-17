@@ -2,14 +2,14 @@ import time
 
 
 def move_stones(array):
-    transposed_array = list(zip(*array))
+    transposed_array = list(map("".join, zip(*array)))
     final_array = []
     for line in transposed_array:
-        rolling_portions = "".join(line).split("#")
+        rolling_portions = line.split("#")
         sorted_portions = ["".join(sorted(portion, reverse=True)) for portion in rolling_portions]
         final_array.append("#".join(sorted_portions))
 
-    return list(zip(*final_array))
+    return list(map("".join, zip(*final_array)))
 
 
 def part1(lines):

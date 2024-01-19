@@ -1,6 +1,15 @@
 import time
 
 
+def cycle(array):
+    working_array = array
+    for _ in range(4):
+        moved_array = move_stones(working_array)
+        working_array = [row[::-1] for row in moved_array]
+
+    return tuple(working_array)
+
+
 def move_stones(array):
     transposed_array = list(map("".join, zip(*array)))
     final_array = []
@@ -9,21 +18,41 @@ def move_stones(array):
         sorted_portions = ["".join(sorted(portion, reverse=True)) for portion in rolling_portions]
         final_array.append("#".join(sorted_portions))
 
-    return list(map("".join, zip(*final_array)))
+    return tuple(final_array)
 
 
-def part1(lines):
-    moved_stones_array = move_stones(lines)
+def measure_weight(moved_stones):
     total_weight = 0
-    for i, line in enumerate(moved_stones_array[::-1]):
+    for i, line in enumerate(moved_stones[::-1]):
         for position in line:
             if position == "O":
                 total_weight += (i + 1)
     return total_weight
 
 
+def part1(lines):
+    moved_stones_array = list(map("".join, zip(*move_stones(lines))))
+    return measure_weight(moved_stones_array)
+
+
 def part2(lines):
-    return 0
+    working_lines = tuple(lines)
+    seen_list = [working_lines]
+    i = 0
+    while True:
+        i += 1
+        working_lines = cycle(working_lines)
+        if working_lines in seen_list:
+            break
+        else:
+            seen_list.append(working_lines)
+
+    start_of_loop = seen_list.index(working_lines)
+    end_of_loop = i
+
+    final_array = seen_list[(1_000_000_000 - start_of_loop) % (end_of_loop - start_of_loop) + start_of_loop]
+
+    return measure_weight(final_array)
 
 
 if __name__ == "__main__":

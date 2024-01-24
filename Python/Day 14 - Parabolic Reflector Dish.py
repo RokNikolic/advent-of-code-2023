@@ -7,7 +7,7 @@ def cycle(array):
         moved_array = move_stones(working_array)
         working_array = [row[::-1] for row in moved_array]
 
-    return tuple(working_array)
+    return working_array
 
 
 def move_stones(array):
@@ -18,7 +18,7 @@ def move_stones(array):
         sorted_portions = ["".join(sorted(portion, reverse=True)) for portion in rolling_portions]
         final_array.append("#".join(sorted_portions))
 
-    return tuple(final_array)
+    return final_array
 
 
 def measure_weight(moved_stones):
@@ -27,27 +27,30 @@ def measure_weight(moved_stones):
         for position in line:
             if position == "O":
                 total_weight += (i + 1)
+
     return total_weight
 
 
-def part1(lines):
+def part1(puzzle_input):
+    lines = puzzle_input.split("\n")
     moved_stones_array = list(map("".join, zip(*move_stones(lines))))
+
     return measure_weight(moved_stones_array)
 
 
-def part2(lines):
-    working_lines = tuple(lines)
-    seen_list = [working_lines]
+def part2(puzzle_input):
+    lines = puzzle_input.split("\n")
+    seen_list = [lines]
     i = 0
     while True:
         i += 1
-        working_lines = cycle(working_lines)
-        if working_lines in seen_list:
+        lines = cycle(lines)
+        if lines in seen_list:
             break
         else:
-            seen_list.append(working_lines)
+            seen_list.append(lines)
 
-    start_of_loop = seen_list.index(working_lines)
+    start_of_loop = seen_list.index(lines)
     end_of_loop = i
 
     final_array = seen_list[(1_000_000_000 - start_of_loop) % (end_of_loop - start_of_loop) + start_of_loop]
@@ -57,15 +60,14 @@ def part2(lines):
 
 if __name__ == "__main__":
     with open(r'../Input/day14.txt', 'r') as f:
-        puzzle_input = f.read()
-        puzzle_lines = puzzle_input.split("\n")
+        read_input = f.read()
 
     start = time.perf_counter()
-    result = part1(puzzle_lines)
+    result = part1(read_input)
     end = time.perf_counter()
     print(f"Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = part2(puzzle_lines)
+    result = part2(read_input)
     end = time.perf_counter()
     print(f"Part 2 result is: {result}, computed in: {end - start :.3} seconds")

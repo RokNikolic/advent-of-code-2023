@@ -9,28 +9,27 @@ def process_string(string):
     return current_value
 
 
-def part1(strings):
-    total_sum = 0
-    for string in strings:
-        total_sum += process_string(string)
+def part1(puzzle_input):
+    strings = puzzle_input.split(",")
+    total_sum = sum(map(process_string, strings))
     return total_sum
 
 
-def part2(lines):
+def part2(puzzle_input):
+    strings = puzzle_input.split(",")
     return 0
 
 
 if __name__ == "__main__":
     with open(r'../Input/day15.txt', 'r') as f:
-        puzzle_input = f.read()
-        puzzle_strings = puzzle_input.split(",")
+        puzzle_read = f.read()
 
     start = time.perf_counter()
-    result = part1(puzzle_strings)
+    result = part1(puzzle_read)
     end = time.perf_counter()
     print(f"Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = part2(puzzle_strings)
+    result = part2(puzzle_read)
     end = time.perf_counter()
     print(f"Part 2 result is: {result}, computed in: {end - start :.3} seconds")

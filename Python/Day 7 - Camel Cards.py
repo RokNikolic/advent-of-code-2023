@@ -70,7 +70,6 @@ def resolve_same_hands(hand1, hand2):
 
 def part1_par2(puzzle_input, part):
     lines = puzzle_input.split("\n")
-
     hands = []
     for line in lines:
         hand, bid = line.split()

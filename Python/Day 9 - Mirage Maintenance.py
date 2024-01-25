@@ -29,7 +29,6 @@ def predict_previous_value(input_list):
 
 def part1(puzzle_input):
     lines = puzzle_input.split("\n")
-
     total_sum = 0
     for line in lines:
         list_of_line = [int(value) for value in line.split()]
@@ -42,7 +41,6 @@ def part1(puzzle_input):
 
 def part2(puzzle_input):
     lines = puzzle_input.split("\n")
-
     total_sum = 0
     for line in lines:
         list_of_line = [int(value) for value in line.split()]

@@ -46,7 +46,6 @@ def expand_number(found_num, lines):
 
 def part1(puzzle_input):
     lines = puzzle_input.split("\n")
-
     lines = pad_matrix(lines, ".")
     total_sum = 0
     for i in range(len(lines)):
@@ -62,7 +61,6 @@ def part1(puzzle_input):
 
 def part2(puzzle_input):
     lines = puzzle_input.split("\n")
-
     lines = pad_matrix(lines, ".")
     total_sum = 0
     for i in range(len(lines)):

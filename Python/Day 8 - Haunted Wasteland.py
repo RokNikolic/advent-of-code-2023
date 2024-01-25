@@ -5,7 +5,6 @@ from math import lcm
 
 def part1(puzzle_input):
     lines = puzzle_input.split("\n")
-
     lr_instructions = lines[0]
     ins_dict = {'L': 0, 'R': 1}
 
@@ -30,7 +29,6 @@ def part1(puzzle_input):
 
 def part2(puzzle_input):
     lines = puzzle_input.split("\n")
-
     lr_instructions = lines[0]
     ins_dict = {'L': 0, 'R': 1}
 

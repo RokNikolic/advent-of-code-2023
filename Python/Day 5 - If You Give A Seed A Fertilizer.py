@@ -41,7 +41,6 @@ def apply_map_ranges(seed_pairs, almanac):
 
 def part1(puzzle_input):
     chunks = puzzle_input.split("\n\n")
-
     seed_map, *line_maps = chunks
     seed_list = list(map(int, seed_map.split()[1:]))
 
@@ -57,7 +56,6 @@ def part1(puzzle_input):
 
 def part2(puzzle_input):
     chunks = puzzle_input.split("\n\n")
-
     seed_map, *line_maps = chunks
     seed_list = list(map(int, seed_map.split()[1:]))
 

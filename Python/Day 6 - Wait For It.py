@@ -7,7 +7,6 @@ def get_distance(speed, remaining_time):
 
 def part1(puzzle_input):
     lines = puzzle_input.split("\n")
-
     times = map(int, lines[0].split()[1:])
     distances = map(int, lines[1].split()[1:])
     total_sum = 1
@@ -25,7 +24,6 @@ def part1(puzzle_input):
 
 def part2(puzzle_input):
     lines = puzzle_input.split("\n")
-
     time_of_race = int(lines[0].split(":")[1].replace(" ", ""))
     distance_of_race = int(lines[1].split(":")[1].replace(" ", ""))
     winning_times = 0

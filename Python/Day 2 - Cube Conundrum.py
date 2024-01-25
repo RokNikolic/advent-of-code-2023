@@ -3,7 +3,6 @@ import time
 
 def part1(puzzle_input):
     lines = puzzle_input.split("\n")
-
     dict_of_limits = {"red": 12, "green": 13, "blue": 14}
     count = 0
     for game_id, line in enumerate(lines):
@@ -26,7 +25,6 @@ def part1(puzzle_input):
 
 def part2(puzzle_input):
     lines = puzzle_input.split("\n")
-
     power = 0
     for line in lines:
         _, content = line.split(":")

@@ -20,7 +20,6 @@ def get_distance(point1, point2, empty_rows, empty_columns, expansion):
 
 def part1_part2(puzzle_input, expansion):
     lines = puzzle_input.split("\n")
-
     index = 0
     galaxy_points = []
     empty_rows = set(range(len(lines)))

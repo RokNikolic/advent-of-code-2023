@@ -63,7 +63,6 @@ def follow_pipe(start_index, work_index, lines):
 
 def part1(puzzle_input):
     lines = puzzle_input.split("\n")
-
     start_index, next_index = find_start(lines)
     steps, _ = follow_pipe(start_index, next_index, lines)
     return int(steps / 2)
@@ -71,7 +70,6 @@ def part1(puzzle_input):
 
 def part2(puzzle_input):
     lines = puzzle_input.split("\n")
-
     start_index, next_index = find_start(lines)
     _, pipe = follow_pipe(start_index, next_index, lines)
 

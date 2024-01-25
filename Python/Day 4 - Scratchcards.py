@@ -3,7 +3,6 @@ import time
 
 def part1(puzzle_input):
     lines = puzzle_input.split("\n")
-
     point_sum = 0
     for line in lines:
         _, numbers = line.split(":")
@@ -20,7 +19,6 @@ def part1(puzzle_input):
 
 def part2(puzzle_input):
     lines = puzzle_input.split("\n")
-
     card_list = []
     for line in lines:
         _, numbers = line.split(":")

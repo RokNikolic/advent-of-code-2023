@@ -10,7 +10,6 @@ def string_num_to_int(line):
 
 def part1_part2(puzzle_input, part):
     lines = puzzle_input.split("\n")
-
     count = 0
     for line in lines:
         if part == 2:

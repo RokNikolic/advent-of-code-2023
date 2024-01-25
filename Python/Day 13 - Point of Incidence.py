@@ -27,7 +27,6 @@ def find_mirror(array, differences):
 
 def part1_part2(puzzle_input, differences):
     chunks = puzzle_input.split("\n\n")
-
     row_sum = 0
     column_sum = 0
     for chunk in chunks:

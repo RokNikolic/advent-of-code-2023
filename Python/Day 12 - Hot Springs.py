@@ -34,7 +34,6 @@ def count_arrangements(record, damaged_list):
 
 def part1_part2(puzzle_input, part):
     lines = puzzle_input.split("\n")
-
     arrangements_sum = 0
     for line in lines:
         record, damaged_numbers = line.split(" ")

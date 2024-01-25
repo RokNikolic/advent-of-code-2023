@@ -61,13 +61,17 @@ def follow_pipe(start_index, work_index, lines):
     return steps, pipe
 
 
-def part1(lines):
+def part1(puzzle_input):
+    lines = puzzle_input.split("\n")
+
     start_index, next_index = find_start(lines)
     steps, _ = follow_pipe(start_index, next_index, lines)
     return int(steps / 2)
 
 
-def part2(lines):
+def part2(puzzle_input):
+    lines = puzzle_input.split("\n")
+
     start_index, next_index = find_start(lines)
     _, pipe = follow_pipe(start_index, next_index, lines)
 
@@ -86,15 +90,14 @@ def part2(lines):
 
 if __name__ == "__main__":
     with open(r'../Input/day10.txt', 'r') as f:
-        puzzle_input = f.read()
-        puzzle_lines = puzzle_input.split("\n")
+        puzzle_read = f.read()
 
     start = time.perf_counter()
-    result = part1(puzzle_lines)
+    result = part1(puzzle_read)
     end = time.perf_counter()
     print(f"Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = part2(puzzle_lines)
+    result = part2(puzzle_read)
     end = time.perf_counter()
     print(f"Part 2 result is: {result}, computed in: {end - start :.3} seconds")

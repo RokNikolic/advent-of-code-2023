@@ -11,12 +11,14 @@ def process_string(string):
 
 def part1(puzzle_input):
     strings = puzzle_input.split(",")
+
     total_sum = sum(map(process_string, strings))
     return total_sum
 
 
 def part2(puzzle_input):
     strings = puzzle_input.split(",")
+
     return 0
 
 

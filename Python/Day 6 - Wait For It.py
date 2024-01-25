@@ -5,7 +5,9 @@ def get_distance(speed, remaining_time):
     return speed * remaining_time
 
 
-def part1(lines):
+def part1(puzzle_input):
+    lines = puzzle_input.split("\n")
+
     times = map(int, lines[0].split()[1:])
     distances = map(int, lines[1].split()[1:])
     total_sum = 1
@@ -21,7 +23,9 @@ def part1(lines):
     return total_sum
 
 
-def part2(lines):
+def part2(puzzle_input):
+    lines = puzzle_input.split("\n")
+
     time_of_race = int(lines[0].split(":")[1].replace(" ", ""))
     distance_of_race = int(lines[1].split(":")[1].replace(" ", ""))
     winning_times = 0
@@ -34,15 +38,14 @@ def part2(lines):
 
 if __name__ == "__main__":
     with open(r'../Input/day6.txt', 'r') as f:
-        puzzle_input = f.read()
-        puzzle_lines = puzzle_input.split("\n")
+        puzzle_read = f.read()
 
     start = time.perf_counter()
-    result = part1(puzzle_lines)
+    result = part1(puzzle_read)
     end = time.perf_counter()
     print(f"Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = part2(puzzle_lines)
+    result = part2(puzzle_read)
     end = time.perf_counter()
     print(f"Part 2 result is: {result}, computed in: {end - start :.3} seconds")

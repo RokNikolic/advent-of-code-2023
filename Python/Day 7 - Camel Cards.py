@@ -68,7 +68,9 @@ def resolve_same_hands(hand1, hand2):
     return hand2, hand1
 
 
-def part1_par2(lines, part):
+def part1_par2(puzzle_input, part):
+    lines = puzzle_input.split("\n")
+
     hands = []
     for line in lines:
         hand, bid = line.split()
@@ -94,15 +96,14 @@ def part1_par2(lines, part):
 
 if __name__ == '__main__':
     with open(r'../Input/day7.txt', 'r') as f:
-        puzzle_input = f.read()
-        puzzle_lines = puzzle_input.split("\n")
+        puzzle_read = f.read()
 
     start = time.perf_counter()
-    result = part1_par2(puzzle_lines, 1)
+    result = part1_par2(puzzle_read, 1)
     end = time.perf_counter()
     print(f"Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = part1_par2(puzzle_lines, 2)
+    result = part1_par2(puzzle_read, 2)
     end = time.perf_counter()
     print(f"Part 2 result is: {result}, computed in: {end - start :.3} seconds")

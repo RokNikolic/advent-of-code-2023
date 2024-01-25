@@ -18,7 +18,9 @@ def get_distance(point1, point2, empty_rows, empty_columns, expansion):
     return y_dist + x_dist
 
 
-def part1_part2(lines, expansion):
+def part1_part2(puzzle_input, expansion):
+    lines = puzzle_input.split("\n")
+
     index = 0
     galaxy_points = []
     empty_rows = set(range(len(lines)))
@@ -43,15 +45,14 @@ def part1_part2(lines, expansion):
 
 if __name__ == "__main__":
     with open(r'../Input/day11.txt', 'r') as f:
-        puzzle_input = f.read()
-        puzzle_lines = puzzle_input.split("\n")
+        puzzle_read = f.read()
 
     start = time.perf_counter()
-    result = part1_part2(puzzle_lines, 2)
+    result = part1_part2(puzzle_read, 2)
     end = time.perf_counter()
     print(f"Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = part1_part2(puzzle_lines, 1_000_000)
+    result = part1_part2(puzzle_read, 1_000_000)
     end = time.perf_counter()
     print(f"Part 2 result is: {result}, computed in: {end - start :.3} seconds")

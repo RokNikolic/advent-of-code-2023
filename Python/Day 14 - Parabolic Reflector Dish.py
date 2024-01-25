@@ -33,13 +33,14 @@ def measure_weight(moved_stones):
 
 def part1(puzzle_input):
     lines = puzzle_input.split("\n")
-    moved_stones_array = list(map("".join, zip(*move_stones(lines))))
 
+    moved_stones_array = list(map("".join, zip(*move_stones(lines))))
     return measure_weight(moved_stones_array)
 
 
 def part2(puzzle_input):
     lines = puzzle_input.split("\n")
+
     seen_list = [lines]
     i = 0
     while True:

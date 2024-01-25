@@ -39,8 +39,10 @@ def apply_map_ranges(seed_pairs, almanac):
     return seed_pairs
 
 
-def part1(lines):
-    seed_map, *line_maps = lines
+def part1(puzzle_input):
+    chunks = puzzle_input.split("\n\n")
+
+    seed_map, *line_maps = chunks
     seed_list = list(map(int, seed_map.split()[1:]))
 
     almanac = []
@@ -53,8 +55,10 @@ def part1(lines):
     return min(locations)
 
 
-def part2(lines):
-    seed_map, *line_maps = lines
+def part2(puzzle_input):
+    chunks = puzzle_input.split("\n\n")
+
+    seed_map, *line_maps = chunks
     seed_list = list(map(int, seed_map.split()[1:]))
 
     seed_pairs = []
@@ -74,15 +78,14 @@ def part2(lines):
 
 if __name__ == '__main__':
     with open(r'../Input/day5.txt', 'r') as f:
-        puzzle_input = f.read()
-        puzzle_lines = puzzle_input.split("\n\n")
+        puzzle_read = f.read()
 
     start = time.perf_counter()
-    result = part1(puzzle_lines)
+    result = part1(puzzle_read)
     end = time.perf_counter()
     print(f"Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = part2(puzzle_lines)
+    result = part2(puzzle_read)
     end = time.perf_counter()
     print(f"Part 2 result is: {result}, computed in: {end - start :.3} seconds")

@@ -25,7 +25,9 @@ def find_mirror(array, differences):
         return None
 
 
-def part1_part2(chunks, differences):
+def part1_part2(puzzle_input, differences):
+    chunks = puzzle_input.split("\n\n")
+
     row_sum = 0
     column_sum = 0
     for chunk in chunks:
@@ -43,15 +45,14 @@ def part1_part2(chunks, differences):
 
 if __name__ == "__main__":
     with open(r'../Input/day13.txt', 'r') as f:
-        puzzle_input = f.read()
-        puzzle_chunks = puzzle_input.split("\n\n")
+        puzzle_read = f.read()
 
     start = time.perf_counter()
-    result = part1_part2(puzzle_chunks, 0)
+    result = part1_part2(puzzle_read, 0)
     end = time.perf_counter()
     print(f"Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = part1_part2(puzzle_chunks, 1)
+    result = part1_part2(puzzle_read, 1)
     end = time.perf_counter()
     print(f"Part 2 result is: {result}, computed in: {end - start :.3} seconds")

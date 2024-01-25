@@ -32,7 +32,9 @@ def count_arrangements(record, damaged_list):
     return count
 
 
-def part1_part2(lines, part):
+def part1_part2(puzzle_input, part):
+    lines = puzzle_input.split("\n")
+
     arrangements_sum = 0
     for line in lines:
         record, damaged_numbers = line.split(" ")
@@ -48,17 +50,16 @@ def part1_part2(lines, part):
 
 if __name__ == "__main__":
     with open(r'../Input/day12.txt', 'r') as f:
-        puzzle_input = f.read()
-        puzzle_lines = puzzle_input.split("\n")
+        puzzle_read = f.read()
 
     state_dict = {}
 
     start = time.perf_counter()
-    result = part1_part2(puzzle_lines, 1)
+    result = part1_part2(puzzle_read, 1)
     end = time.perf_counter()
     print(f"Part 1 result is: {result}, computed in: {end - start :.3} seconds")
 
     start = time.perf_counter()
-    result = part1_part2(puzzle_lines, 2)
+    result = part1_part2(puzzle_read, 2)
     end = time.perf_counter()
     print(f"Part 2 result is: {result}, computed in: {end - start :.3} seconds")

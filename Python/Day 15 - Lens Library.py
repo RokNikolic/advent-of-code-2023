@@ -1,7 +1,7 @@
 import time
 
 
-def process_string(string):
+def hash_algorithm(string):
     current_value = 0
     for character in string:
         current_value += ord(character)
@@ -11,7 +11,7 @@ def process_string(string):
 
 def part1(puzzle_input):
     strings = puzzle_input.split(",")
-    total_sum = sum(map(process_string, strings))
+    total_sum = sum(map(hash_algorithm, strings))
     return total_sum
 
 

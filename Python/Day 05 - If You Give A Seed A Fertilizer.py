@@ -75,15 +75,14 @@ def part2(puzzle_input):
 
 
 if __name__ == '__main__':
-    with open(r'../Input/day5.txt', 'r') as f:
+    day = 5
+    with open(rf'../Input/day{day}.txt', 'r') as f:
         puzzle_read = f.read()
 
-    start = time.perf_counter()
+    timer_start = time.perf_counter()
     result = part1(puzzle_read)
-    end = time.perf_counter()
-    print(f"Part 1 result is: {result}, computed in: {end - start :.3} seconds")
+    print(f"Day {day}, Part 1 result is: {result}, computed in: {time.perf_counter() - timer_start:.3} seconds")
 
-    start = time.perf_counter()
+    timer_start = time.perf_counter()
     result = part2(puzzle_read)
-    end = time.perf_counter()
-    print(f"Part 2 result is: {result}, computed in: {end - start :.3} seconds")
+    print(f"Day {day}, Part 2 result is: {result}, computed in: {time.perf_counter() - timer_start:.3} seconds")

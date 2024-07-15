@@ -25,7 +25,26 @@ def find_mirror(array, differences):
         return None
 
 
-def part1_part2(puzzle_input, differences):
+def part1(puzzle_input):
+    differences = 0  # <-- difference
+    chunks = puzzle_input.split("\n\n")
+    row_sum = 0
+    column_sum = 0
+    for chunk in chunks:
+        array = chunk.split()
+        transposed_array = list(zip(*array))
+
+        if vertical_reflection := find_mirror(array, differences):
+            row_sum += vertical_reflection
+
+        elif horizontal_reflection := find_mirror(transposed_array, differences):
+            column_sum += horizontal_reflection
+
+    return column_sum + (row_sum * 100)
+
+
+def part2(puzzle_input):
+    differences = 1  # <-- difference
     chunks = puzzle_input.split("\n\n")
     row_sum = 0
     column_sum = 0
@@ -43,15 +62,14 @@ def part1_part2(puzzle_input, differences):
 
 
 if __name__ == "__main__":
-    with open(r'../Input/day13.txt', 'r') as f:
+    day = 13
+    with open(rf'../Input/day{day}.txt', 'r') as f:
         puzzle_read = f.read()
 
-    start = time.perf_counter()
-    result = part1_part2(puzzle_read, 0)
-    end = time.perf_counter()
-    print(f"Part 1 result is: {result}, computed in: {end - start :.3} seconds")
+    timer_start = time.perf_counter()
+    result = part1(puzzle_read)
+    print(f"Day {day}, Part 1 result is: {result}, computed in: {time.perf_counter() - timer_start:.3} seconds")
 
-    start = time.perf_counter()
-    result = part1_part2(puzzle_read, 1)
-    end = time.perf_counter()
-    print(f"Part 2 result is: {result}, computed in: {end - start :.3} seconds")
+    timer_start = time.perf_counter()
+    result = part2(puzzle_read)
+    print(f"Day {day}, Part 2 result is: {result}, computed in: {time.perf_counter() - timer_start:.3} seconds")

@@ -18,7 +18,33 @@ def get_distance(point1, point2, empty_rows, empty_columns, expansion):
     return y_dist + x_dist
 
 
-def part1_part2(puzzle_input, expansion):
+def part1(puzzle_input):
+    expansion = 2  # <-- difference
+    lines = puzzle_input.split("\n")
+    index = 0
+    galaxy_points = []
+    empty_rows = set(range(len(lines)))
+    empty_columns = set(range(len(lines[0])))
+
+    for y, line in enumerate(lines):
+        for x, char in enumerate(line):
+            if char == "#":
+                index += 1
+                galaxy_points.append((y, x))
+                empty_rows.discard(y)
+                empty_columns.discard(x)
+
+    total_sum = 0
+    for i, point1 in enumerate(galaxy_points):
+        for point2 in galaxy_points[:i]:
+            manhattan_distance = get_distance(point1, point2, empty_rows, empty_columns, expansion)
+            total_sum += manhattan_distance
+
+    return total_sum
+
+
+def part2(puzzle_input):
+    expansion = 1_000_000  # <-- difference
     lines = puzzle_input.split("\n")
     index = 0
     galaxy_points = []
@@ -43,15 +69,14 @@ def part1_part2(puzzle_input, expansion):
 
 
 if __name__ == "__main__":
-    with open(r'../Input/day11.txt', 'r') as f:
+    day = 11
+    with open(rf'../Input/day{day}.txt', 'r') as f:
         puzzle_read = f.read()
 
-    start = time.perf_counter()
-    result = part1_part2(puzzle_read, 2)
-    end = time.perf_counter()
-    print(f"Part 1 result is: {result}, computed in: {end - start :.3} seconds")
+    timer_start = time.perf_counter()
+    result = part1(puzzle_read)
+    print(f"Day {day}, Part 1 result is: {result}, computed in: {time.perf_counter() - timer_start:.3} seconds")
 
-    start = time.perf_counter()
-    result = part1_part2(puzzle_read, 1_000_000)
-    end = time.perf_counter()
-    print(f"Part 2 result is: {result}, computed in: {end - start :.3} seconds")
+    timer_start = time.perf_counter()
+    result = part2(puzzle_read)
+    print(f"Day {day}, Part 2 result is: {result}, computed in: {time.perf_counter() - timer_start:.3} seconds")

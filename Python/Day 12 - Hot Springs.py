@@ -32,15 +32,26 @@ def count_arrangements(record, damaged_list):
     return count
 
 
-def part1_part2(puzzle_input, part):
+def part1(puzzle_input):
     lines = puzzle_input.split("\n")
     arrangements_sum = 0
     for line in lines:
         record, damaged_numbers = line.split(" ")
         damaged_list = tuple(map(int, damaged_numbers.split(",")))
-        if part == 2:
-            record = "?".join([record] * 5)
-            damaged_list *= 5
+        arrangements = count_arrangements(record, damaged_list)
+        arrangements_sum += arrangements
+
+    return arrangements_sum
+
+
+def part2(puzzle_input):
+    lines = puzzle_input.split("\n")
+    arrangements_sum = 0
+    for line in lines:
+        record, damaged_numbers = line.split(" ")
+        damaged_list = tuple(map(int, damaged_numbers.split(",")))
+        record = "?".join([record] * 5)  # <-- difference
+        damaged_list *= 5  # <-- difference
         arrangements = count_arrangements(record, damaged_list)
         arrangements_sum += arrangements
 
@@ -48,17 +59,16 @@ def part1_part2(puzzle_input, part):
 
 
 if __name__ == "__main__":
-    with open(r'../Input/day12.txt', 'r') as f:
+    day = 12
+    with open(rf'../Input/day{day}.txt', 'r') as f:
         puzzle_read = f.read()
 
-    state_dict = {}
+    state_dict = {}  # Sadly has to be here with this implementation
 
-    start = time.perf_counter()
-    result = part1_part2(puzzle_read, 1)
-    end = time.perf_counter()
-    print(f"Part 1 result is: {result}, computed in: {end - start :.3} seconds")
+    timer_start = time.perf_counter()
+    result = part1(puzzle_read)
+    print(f"Day {day}, Part 1 result is: {result}, computed in: {time.perf_counter() - timer_start:.3} seconds")
 
-    start = time.perf_counter()
-    result = part1_part2(puzzle_read, 2)
-    end = time.perf_counter()
-    print(f"Part 2 result is: {result}, computed in: {end - start :.3} seconds")
+    timer_start = time.perf_counter()
+    result = part2(puzzle_read)
+    print(f"Day {day}, Part 2 result is: {result}, computed in: {time.perf_counter() - timer_start:.3} seconds")

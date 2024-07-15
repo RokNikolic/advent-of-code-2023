@@ -68,13 +68,7 @@ def resolve_same_hands(hand1, hand2):
     return hand2, hand1
 
 
-def part1_par2(puzzle_input, part):
-    lines = puzzle_input.split("\n")
-    hands = []
-    for line in lines:
-        hand, bid = line.split()
-        hands.append(get_hand_strength(hand, part) + [int(bid)])
-
+def get_final_hands(hands):
     sorted_hands = sorted(hands)
 
     old_hand = (-1, [], 0)
@@ -82,10 +76,36 @@ def part1_par2(puzzle_input, part):
         if sorted_hands[i][0] == old_hand[0]:
             ordered = resolve_same_hands(old_hand, sorted_hands[i])
             sorted_hands[i] = ordered[1]
-            sorted_hands[i-1] = ordered[0]
+            sorted_hands[i - 1] = ordered[0]
         old_hand = sorted_hands[i]
 
     final_hands = sorted(sorted_hands)
+    return final_hands
+
+
+def part1(puzzle_input):
+    lines = puzzle_input.split("\n")
+    hands = []
+    for line in lines:
+        hand, bid = line.split()
+        hands.append(get_hand_strength(hand, 1) + [int(bid)])
+
+    final_hands = get_final_hands(hands)
+    total_sum = 0
+    for i, final_hand in enumerate(final_hands):
+        total_sum += final_hand[2] * (i + 1)
+
+    return total_sum
+
+
+def part2(puzzle_input):
+    lines = puzzle_input.split("\n")
+    hands = []
+    for line in lines:
+        hand, bid = line.split()
+        hands.append(get_hand_strength(hand, 2) + [int(bid)])
+
+    final_hands = get_final_hands(hands)
     total_sum = 0
     for i, final_hand in enumerate(final_hands):
         total_sum += final_hand[2] * (i + 1)
@@ -94,15 +114,14 @@ def part1_par2(puzzle_input, part):
 
 
 if __name__ == '__main__':
-    with open(r'../Input/day7.txt', 'r') as f:
+    day = 7
+    with open(rf'../Input/day{day}.txt', 'r') as f:
         puzzle_read = f.read()
 
-    start = time.perf_counter()
-    result = part1_par2(puzzle_read, 1)
-    end = time.perf_counter()
-    print(f"Part 1 result is: {result}, computed in: {end - start :.3} seconds")
+    timer_start = time.perf_counter()
+    result = part1(puzzle_read)
+    print(f"Day {day}, Part 1 result is: {result}, computed in: {time.perf_counter() - timer_start:.3} seconds")
 
-    start = time.perf_counter()
-    result = part1_par2(puzzle_read, 2)
-    end = time.perf_counter()
-    print(f"Part 2 result is: {result}, computed in: {end - start :.3} seconds")
+    timer_start = time.perf_counter()
+    result = part2(puzzle_read)
+    print(f"Day {day}, Part 2 result is: {result}, computed in: {time.perf_counter() - timer_start:.3} seconds")

@@ -1,4 +1,4 @@
 .idea
 .venv
-input/*
-!input/.gitkeep
+2023/Input/*
+!2023/Input/.gitkeep

@@ -2,7 +2,8 @@ import time
 
 
 def part1(puzzle_input):
-    strings = puzzle_input.split("\n")
+    grid = puzzle_input.split("\n")
+    print(grid[0][5])
 
 
 def part2(puzzle_input):

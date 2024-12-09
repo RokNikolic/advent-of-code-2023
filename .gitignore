@@ -2,3 +2,5 @@
 .venv
 2023/Input/*
 !2023/Input/.gitkeep
+2024/Input/*
+!2024/Input/.gitkeep

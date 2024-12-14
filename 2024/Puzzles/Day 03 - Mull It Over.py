@@ -3,7 +3,7 @@ import re
 
 
 def extract_mul_commands(memory):
-    regex = r'mul\([0-9]+,[0-9]+\)'
+    regex = r'mul\([0-9]{1,3},[0-9]{1,3}\)'
     return re.findall(regex, memory)
 
 
@@ -24,8 +24,7 @@ def part2(puzzle_input):
     dos = puzzle_input.split("do()")
     sum_of_all = 0
     for do in dos:
-        do_and_dont = do.split("don't()")
-        allowed_memory = do_and_dont[0]
+        allowed_memory = do.split("don't()")[0]
         commands = extract_mul_commands(allowed_memory)
         sum_of_allowed = sum([resolve_mul(command) for command in commands])
         sum_of_all += sum_of_allowed

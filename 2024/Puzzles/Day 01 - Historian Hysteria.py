@@ -44,6 +44,7 @@ def part2(puzzle_input):
 
     return similarity_score
 
+
 if __name__ == "__main__":
     day = 1
     with open(rf'../Input/day{day}.txt', 'r') as f:

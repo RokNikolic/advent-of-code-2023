@@ -1,5 +1,5 @@
 # Advent of Code with Python
-- My Advent of Code implementations with python.
+- My Advent of Code implementations with Python.
 - Using Python version 3.12
 
 ### 2023

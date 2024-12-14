@@ -1,5 +1,4 @@
 import time
-from itertools import count
 
 
 def check_safety(report):

@@ -21,8 +21,16 @@ def part1(puzzle_input):
 
 
 def part2(puzzle_input):
+    dos = puzzle_input.split("do()")
+    sum_of_all = 0
+    for do in dos:
+        do_and_dont = do.split("don't()")
+        allowed_memory = do_and_dont[0]
+        commands = extract_mul_commands(allowed_memory)
+        sum_of_allowed = sum([resolve_mul(command) for command in commands])
+        sum_of_all += sum_of_allowed
 
-    return 0
+    return sum_of_all
 
 
 if __name__ == "__main__":

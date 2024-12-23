@@ -1,4 +1,16 @@
 import time
+from functools import cmp_to_key
+
+
+def create_preceding_number_dict(orders):
+    preceding_number_dict = {}
+    for order in orders:
+        before, after = list(map(int, order.split("|")))
+        if after not in preceding_number_dict:
+            preceding_number_dict[after] = {before}
+        else:
+            preceding_number_dict[after].add(before)
+    return preceding_number_dict
 
 
 def check_update_correctness(update, preceding_number_dictionary):
@@ -15,22 +27,12 @@ def check_update_correctness(update, preceding_number_dictionary):
         return True
 
 
-def order_update(update, order_dictionary):
-    pass
-
-
 def part1(puzzle_input):
     order_part, update_part = puzzle_input.split("\n\n")
     orders = order_part.split("\n")
     updates = update_part.split("\n")
 
-    preceding_number_dict = {}
-    for order in orders:
-        before, after = list(map(int, order.split("|")))
-        if after not in preceding_number_dict:
-            preceding_number_dict[after] = {before}
-        else:
-            preceding_number_dict[after].add(before)
+    preceding_number_dict = create_preceding_number_dict(orders)
 
     overall_sum = 0
     for update in updates:
@@ -45,19 +47,19 @@ def part2(puzzle_input):
     orders = order_part.split("\n")
     updates = update_part.split("\n")
 
-    preceding_number_dict = {}
+    preceding_number_dict = create_preceding_number_dict(orders)
+
+    comparison_dict = {}
     for order in orders:
         before, after = list(map(int, order.split("|")))
-        if after not in preceding_number_dict:
-            preceding_number_dict[after] = {before}
-        else:
-            preceding_number_dict[after].add(before)
+        comparison_dict[(before, after)] = -1
+        comparison_dict[(after, before)] = 1
 
     overall_sum = 0
     for update in updates:
         update_numbers = list(map(int, update.split(",")))
         if not check_update_correctness(update_numbers, preceding_number_dict):
-            order_update(update_numbers)
+            update_numbers.sort(key=cmp_to_key(lambda num1, num2: comparison_dict[(num1, num2)]))
             overall_sum += update_numbers[len(update_numbers) // 2]
     return overall_sum
 

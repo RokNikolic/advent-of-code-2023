@@ -14,8 +14,8 @@ def pad_matrix(array, symbol):
     return array
 
 
-def check_location(matrix, y, x):
-    positions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 0), (0, 1), (1, -1), (1, 0), (1, 1)]
+def check_x_location(matrix, y, x):
+    positions = [(-1, -1), (-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1)]
     needed_letters = ["M", "A", "S"]
     xmas_count = 0
     for p_y, p_x in positions:
@@ -28,6 +28,23 @@ def check_location(matrix, y, x):
     return xmas_count
 
 
+def check_a_location(matrix, y, x):
+    positions = [[(-1, -1), (1, 1)], [(-1, 1), (1, -1)]]
+    mas_count = 0
+    for first, second in positions:
+        y1, x1 = first
+        y2, x2 = second
+        if matrix[y + y1][x + x1] == "M" and matrix[y + y2][x + x2] == "S":
+            continue
+        elif matrix[y + y1][x + x1] == "S" and matrix[y + y2][x + x2] == "M":
+            continue
+        else:
+            break
+    else:
+        mas_count += 1
+    return mas_count
+
+
 def part1(puzzle_input):
     matrix = puzzle_input.split("\n")
     padded_matrix = pad_matrix(matrix, ".")
@@ -35,14 +52,23 @@ def part1(puzzle_input):
     for y in range(len(padded_matrix)):
         for x in range(len(padded_matrix[0])):
             if padded_matrix[y][x] == "X":
-                count = check_location(padded_matrix, y, x)
+                count = check_x_location(padded_matrix, y, x)
                 overall_count += count
 
     return overall_count
 
 
 def part2(puzzle_input):
-    return 0
+    matrix = puzzle_input.split("\n")
+    padded_matrix = pad_matrix(matrix, ".")
+    overall_count = 0
+    for y in range(len(padded_matrix)):
+        for x in range(len(padded_matrix[0])):
+            if padded_matrix[y][x] == "A":
+                count = check_a_location(padded_matrix, y, x)
+                overall_count += count
+
+    return overall_count
 
 
 if __name__ == "__main__":

@@ -2,29 +2,32 @@ import time
 
 
 def find_guard(matrix):
-    directions = {"^":(-1, 0), ">":(1, 0), "ˇ":(0, 1), "<":(0, -1)}
+    directions = {"^":(-1, 0), ">":(0, 1), "ˇ":(1, 0), "<":(0, -1)}
     for y in range(len(matrix)):
         for x in range(len(matrix[0])):
             if matrix[y][x] in "^ˇ><":
                 return (y, x), directions[matrix[y][x]]
 
 
-def rotate_right(position):
-    direction_change = {(-1, 0): (0, 1), (0, 1): (1, 0), (1, 0): (0, -1), (0, -1): (-1, 0)}
-    return direction_change[position]
+def rotate_right(direction):
+    return direction[1], -direction[0]
+
+
+def rotate_left(direction):
+    return -direction[1], direction[0]
 
 
 def part1(puzzle_input):
     matrix = puzzle_input.split("\n")
-    current_position, current_direction = find_guard(matrix)
+    current_pos, current_dir = find_guard(matrix)
 
-    visited_positions = [current_position]
-    while current_position[0] + 1 < len(matrix[0]) and current_position[1] + 1 < len(matrix[1]):
-        new_position = (current_position[0] + current_direction[0], current_position[1] + current_direction[1])
+    visited_positions = [current_pos]
+    while current_pos[0] + current_dir[0] < len(matrix) and current_pos[1] + current_dir[1] < len(matrix[0]):
+        new_position = (current_pos[0] + current_dir[0], current_pos[1] + current_dir[1])
         if matrix[new_position[0]][new_position[1]] == "#":
-            current_direction = rotate_right(current_direction)
+            current_dir = rotate_right(current_dir)
         else:
-            current_position = new_position
+            current_pos = new_position
             visited_positions.append(new_position)
 
     return len(set(visited_positions))
